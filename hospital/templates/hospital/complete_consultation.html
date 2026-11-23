@@ -1,0 +1,78 @@
+
+{% extends 'hospital/staff_base.html' %}
+
+{% block title %}Complete Consultation | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="consultation-section">
+
+    <div class="consultation-card">
+
+        <h1>Complete Patient Consultation</h1>
+
+        <div class="patient-summary">
+
+            <p>
+                <strong>Patient:</strong>
+                {{ appointment.patient.full_name }}
+            </p>
+
+            <p>
+                <strong>Doctor:</strong>
+                {{ appointment.doctor.doctor_name }}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                {{ appointment.appointment_date }}
+            </p>
+
+            <p>
+                <strong>Time:</strong>
+                {{ appointment.appointment_time }}
+            </p>
+
+        </div>
+
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+
+            {% for field in form %}
+
+                <div class="consultation-field">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {{ field.errors }}
+
+                </div>
+
+            {% endfor %}
+
+            <button type="submit" class="complete-btn">
+                Save & Complete Consultation
+            </button>
+
+            <a href="{% url 'doctor_dashboard' %}"
+               class="back-dashboard-btn">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

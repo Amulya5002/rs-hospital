@@ -1,0 +1,35 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}RS Hospital Staff{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{% static 'hospital/css/style.css' %}">
+</head>
+
+<body class="staff-page">
+
+    <header class="staff-header">
+        <h2>RS Hospital | Staff Portal</h2>
+
+        {% if request.user.is_authenticated %}
+            <form method="POST" action="{% url 'doctor_logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="staff-logout">
+                    Logout
+                </button>
+            </form>
+        {% endif %}
+    </header>
+
+    <main class="staff-main">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

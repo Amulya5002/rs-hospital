@@ -1,0 +1,115 @@
+
+{% extends 'hospital/base.html' %}
+
+{% block title %}Book Appointment | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <p class="eyebrow">RS HOSPITAL</p>
+    <h1>Book Your Appointment</h1>
+    <p>Schedule your visit with our experienced doctors.</p>
+</section>
+
+<section class="section">
+
+    <div class="form-container">
+
+        <h2>Appointment Form</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="appointment-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Patient Full Name *</label>
+                <input type="text" name="full_name"
+                       placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" name="email"
+                       placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="tel" name="phone"
+                       placeholder="Enter your phone number"
+                       maxlength="15" required>
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="date_of_birth">
+            </div>
+
+            <div class="form-group">
+                <label>Gender *</label>
+                <select name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Doctor *</label>
+                <select name="doctor" required>
+                    <option value="">Choose a Doctor</option>
+
+                    {% for doctor in doctors %}
+                        <option value="{{ doctor.id }}">
+                            {{ doctor.doctor_name }} -
+                            {{ doctor.department.department_name }}
+                        </option>
+                    {% empty %}
+                        <option value="" disabled>
+                            No doctors currently available
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Date *</label>
+                <input type="date" name="appointment_date"
+                       min="{{ today }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Time *</label>
+                <input type="time" name="appointment_time" required>
+            </div>
+
+            <div class="form-group">
+                <label>Reason for Appointment</label>
+                <textarea name="reason"
+                          placeholder="Describe your health concern"
+                          rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn">
+                Book Appointment
+            </button>
+
+        </form>
+
+        <p class="form-note">
+            Your appointment request will be submitted for hospital confirmation.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

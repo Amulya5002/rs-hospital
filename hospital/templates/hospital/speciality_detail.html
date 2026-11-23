@@ -1,0 +1,400 @@
+
+{% extends 'hospital/base.html' %}
+
+{% block title %}{{ department.department_name }} | RS Hospital{% endblock %}
+
+{% block content %}
+
+<!-- SPECIALITY HERO -->
+<section class="speciality-detail-hero">
+    <div class="speciality-detail-hero-content">
+        <span>RS HOSPITAL – OUR MEDICAL SERVICES</span>
+        <h1>{{ department.department_name }}</h1>
+        <p>Expert medical care, advanced diagnosis and compassionate treatment for your health.</p>
+
+        <a href="{% url 'appointment_page' %}" class="speciality-book-btn">
+            Book an Appointment
+        </a>
+    </div>
+</section>
+
+
+<!-- SPECIALITY INFORMATION -->
+<section class="speciality-detail-section">
+
+    <div class="speciality-info-container">
+
+        <div class="speciality-info-card">
+
+            <h2>About {{ department.department_name }}</h2>
+
+            {% if department.department_name == "Cardiology" %}
+
+                <p>Cardiology is the branch of medicine concerned with the diagnosis, treatment and prevention of diseases affecting the heart and blood vessels.</p>
+
+                <p>The heart plays an important role in circulating blood and supplying oxygen throughout the body. Cardiologists help patients maintain heart health and manage different cardiovascular conditions.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>High blood pressure</li>
+                    <li>Coronary artery disease</li>
+                    <li>Heart rhythm disorders</li>
+                    <li>Heart failure</li>
+                    <li>Heart valve diseases</li>
+                    <li>Chest pain and related heart conditions</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Chest pain or discomfort</li>
+                    <li>Shortness of breath</li>
+                    <li>Irregular heartbeat</li>
+                    <li>Dizziness or fainting</li>
+                    <li>Unusual tiredness</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>Electrocardiogram (ECG)</li>
+                    <li>Echocardiogram (ECHO)</li>
+                    <li>Treadmill Test (TMT)</li>
+                    <li>Holter monitoring</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Cardiology care may include medication, lifestyle guidance, regular heart monitoring and specialised procedures depending on the patient's condition.</p>
+
+
+            {% elif department.department_name == "Neurology" %}
+
+                <p>Neurology is the medical speciality focused on the brain, spinal cord and nervous system. Neurologists diagnose and manage conditions that affect movement, memory, sensation and coordination.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Migraine and recurring headaches</li>
+                    <li>Epilepsy and seizures</li>
+                    <li>Stroke</li>
+                    <li>Parkinson's disease</li>
+                    <li>Peripheral nerve disorders</li>
+                    <li>Multiple sclerosis</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Frequent or severe headaches</li>
+                    <li>Numbness or tingling</li>
+                    <li>Muscle weakness</li>
+                    <li>Memory problems</li>
+                    <li>Balance and coordination difficulties</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>MRI and CT scans</li>
+                    <li>Electroencephalogram (EEG)</li>
+                    <li>Nerve conduction studies</li>
+                    <li>Neurological examinations</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Treatment may include medication, neurological monitoring, rehabilitation and specialised procedures based on the diagnosis.</p>
+
+
+            {% elif department.department_name == "Surgical Gastroenterology" %}
+
+                <p>Surgical Gastroenterology focuses on the surgical management of diseases affecting the digestive system, including the stomach, intestines, liver, pancreas and gallbladder.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Gallstones</li>
+                    <li>Appendicitis</li>
+                    <li>Hernia</li>
+                    <li>Digestive tract disorders requiring surgery</li>
+                    <li>Selected liver and pancreatic conditions</li>
+                    <li>Gastrointestinal tumours</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Persistent abdominal pain</li>
+                    <li>Vomiting and nausea</li>
+                    <li>Difficulty swallowing</li>
+                    <li>Changes in bowel habits</li>
+                    <li>Unexplained digestive problems</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>Ultrasound examination</li>
+                    <li>Endoscopy</li>
+                    <li>Colonoscopy</li>
+                    <li>CT and MRI scans</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Treatment may include medication, surgical procedures, minimally invasive surgery and post-operative care depending on the condition.</p>
+
+
+            {% elif department.department_name == "Urology" %}
+
+                <p>Urology is the speciality concerned with the urinary system in men and women and the male reproductive system.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Kidney stones</li>
+                    <li>Urinary tract infections</li>
+                    <li>Bladder disorders</li>
+                    <li>Prostate enlargement</li>
+                    <li>Urinary incontinence</li>
+                    <li>Selected kidney and urinary tract conditions</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Pain or burning during urination</li>
+                    <li>Frequent urination</li>
+                    <li>Blood in urine</li>
+                    <li>Difficulty passing urine</li>
+                    <li>Lower abdominal or back pain</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>Urine tests</li>
+                    <li>Ultrasound scans</li>
+                    <li>CT scans</li>
+                    <li>Cystoscopy</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Urological treatment may include medication, stone management, minimally invasive procedures and surgery when required.</p>
+
+
+            {% elif department.department_name == "Pulmonology" %}
+
+                <p>Pulmonology is the branch of medicine that focuses on the lungs and respiratory system. Pulmonologists diagnose and treat conditions that affect breathing and lung function.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Asthma</li>
+                    <li>Chronic obstructive pulmonary disease (COPD)</li>
+                    <li>Pneumonia</li>
+                    <li>Bronchitis</li>
+                    <li>Sleep-related breathing disorders</li>
+                    <li>Other respiratory conditions</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Persistent cough</li>
+                    <li>Shortness of breath</li>
+                    <li>Wheezing</li>
+                    <li>Chest tightness</li>
+                    <li>Frequent respiratory infections</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>Pulmonary function tests</li>
+                    <li>Chest X-rays</li>
+                    <li>CT scans</li>
+                    <li>Bronchoscopy</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Treatment may include inhalers, medication, oxygen therapy when indicated, breathing support and pulmonary rehabilitation.</p>
+
+
+            {% elif department.department_name == "Gynecology" %}
+
+                <p>Gynecology focuses on women's reproductive health and the diagnosis and treatment of conditions affecting the female reproductive system.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Menstrual disorders</li>
+                    <li>Polycystic ovary syndrome (PCOS)</li>
+                    <li>Endometriosis</li>
+                    <li>Uterine fibroids</li>
+                    <li>Pelvic infections</li>
+                    <li>Menopause-related concerns</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Irregular periods</li>
+                    <li>Severe menstrual pain</li>
+                    <li>Unusual vaginal bleeding</li>
+                    <li>Pelvic pain</li>
+                    <li>Hormonal changes</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>Pelvic examination</li>
+                    <li>Ultrasound scans</li>
+                    <li>Pap smear screening</li>
+                    <li>Hormonal blood tests</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Care may include preventive screening, medication, hormonal treatment, counselling and surgical procedures when needed.</p>
+
+
+            {% elif department.department_name == "Orthopaedic & Trauma" %}
+
+                <p>Orthopaedics and Trauma focuses on the bones, joints, muscles, ligaments and other parts of the musculoskeletal system. It also provides care for injuries caused by accidents and physical trauma.</p>
+
+                <h3>Conditions Treated</h3>
+                <ul>
+                    <li>Bone fractures</li>
+                    <li>Arthritis</li>
+                    <li>Sports injuries</li>
+                    <li>Joint disorders</li>
+                    <li>Spine-related conditions</li>
+                    <li>Ligament and tendon injuries</li>
+                </ul>
+
+                <h3>Common Symptoms</h3>
+                <ul>
+                    <li>Joint pain and stiffness</li>
+                    <li>Back and neck pain</li>
+                    <li>Swelling around joints</li>
+                    <li>Difficulty walking or moving</li>
+                    <li>Muscle and bone injuries</li>
+                </ul>
+
+                <h3>Diagnostic Tests</h3>
+                <ul>
+                    <li>X-rays</li>
+                    <li>MRI scans</li>
+                    <li>CT scans</li>
+                    <li>Bone density tests</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Treatment may include medication, physiotherapy, fracture management, joint procedures and orthopaedic surgery.</p>
+
+
+            {% elif department.department_name == "Critical Care" %}
+
+                <p>Critical Care is a specialised medical service for patients with serious, life-threatening illnesses or injuries who require continuous monitoring and advanced medical support.</p>
+
+                <h3>Conditions Managed</h3>
+                <ul>
+                    <li>Severe infections and sepsis</li>
+                    <li>Serious breathing difficulties</li>
+                    <li>Major injuries and trauma</li>
+                    <li>Severe heart-related emergencies</li>
+                    <li>Organ failure</li>
+                    <li>Post-operative critical conditions</li>
+                </ul>
+
+                <h3>When Critical Care Is Needed</h3>
+                <ul>
+                    <li>Severe difficulty breathing</li>
+                    <li>Unconsciousness</li>
+                    <li>Severe injuries</li>
+                    <li>Unstable vital signs</li>
+                    <li>Need for intensive monitoring</li>
+                </ul>
+
+                <h3>Critical Care Services</h3>
+                <ul>
+                    <li>Intensive care unit monitoring</li>
+                    <li>Respiratory support</li>
+                    <li>Continuous vital sign monitoring</li>
+                    <li>Emergency medical management</li>
+                    <li>Multidisciplinary patient care</li>
+                </ul>
+
+                <h3>Treatment and Care</h3>
+                <p>Critical care involves close monitoring, specialised equipment, medicines and coordinated treatment by a medical team.</p>
+
+            {% else %}
+
+                <p>Our medical team provides specialised care, diagnosis and treatment for conditions related to {{ department.department_name }}.</p>
+
+                <p>Please contact RS Hospital to learn more about the services available in this department.</p>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- WHY CHOOSE US -->
+        <div class="speciality-why-card">
+            <h2>Why Choose RS Hospital?</h2>
+
+            <ul>
+                <li>Patient-focused medical care</li>
+                <li>Experienced healthcare professionals</li>
+                <li>Modern diagnostic facilities</li>
+                <li>Personalised treatment planning</li>
+                <li>Focus on patient safety and comfort</li>
+            </ul>
+
+            <a href="{% url 'appointment_page' %}" class="speciality-book-btn">
+                Schedule Your Appointment
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DOCTORS SECTION -->
+<section class="speciality-doctors-section">
+
+    <div class="speciality-section-heading">
+        <span>OUR MEDICAL TEAM</span>
+        <h2>Doctors in {{ department.department_name }}</h2>
+        <p>Meet the doctors associated with this department.</p>
+    </div>
+
+    <div class="speciality-doctors-grid">
+
+        {% for doctor in doctors %}
+
+            <div class="speciality-doctor-card">
+
+                <h3>{{ doctor.doctor_name }}</h3>
+
+                <p>{{ department.department_name }}</p>
+
+                {% if doctor.is_available %}
+                    <span class="doctor-available">Available</span>
+                {% else %}
+                    <span class="doctor-unavailable">Currently Unavailable</span>
+                {% endif %}
+
+                <a href="{% url 'appointment_page' %}" class="speciality-doctor-btn">
+                    Book Appointment
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <p class="no-speciality-doctors">
+                No doctors are currently listed in this department.
+                Please contact RS Hospital for assistance.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- MEDICAL DISCLAIMER -->
+<section class="speciality-disclaimer">
+    <p>
+        The information on this page is for general educational purposes only.
+        Please consult a qualified healthcare professional for medical advice,
+        diagnosis and treatment.
+    </p>
+</section>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+{% block title %}Our Doctors | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <p class="eyebrow">OUR MEDICAL TEAM</p>
+    <h1>Meet Our Doctors</h1>
+    <p>Find a doctor according to their medical speciality.</p>
+</section>
+
+<section class="section">
+
+    <div class="doctor-grid">
+
+        {% for doctor in doctors %}
+
+        <article class="doctor-card">
+
+            <div class="doctor-image">
+    {% if doctor.image %}
+        <img src="{{ doctor.image.url }}"
+             alt="{{ doctor.doctor_name }}">
+    {% else %}
+        <div class="doctor-image-placeholder">
+            <span>👨‍⚕️</span>
+            <p>Image not uploaded</p>
+        </div>
+    {% endif %}
+</div>
+
+            <div class="doctor-details">
+
+                <h3>{{ doctor.doctor_name }}</h3>
+
+                <p>{{ doctor.qualification }}</p>
+
+                <p class="doctor-department">
+                    {{ doctor.department_name }}
+                </p>
+
+                <p>
+                    {{ doctor.experience_years }} years of experience
+                </p>
+
+                {% if doctor.is_available %}
+                    <span class="available">Available</span>
+                {% else %}
+                    <span class="unavailable">Not Available</span>
+                {% endif %}
+
+                <a href="{% url 'appointment_page' %}"
+                   class="doctor-btn">
+                    Book Appointment
+                </a>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <p>No doctors available currently.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

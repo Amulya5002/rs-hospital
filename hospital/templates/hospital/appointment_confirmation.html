@@ -1,0 +1,74 @@
+
+{% extends 'hospital/base.html' %}
+
+{% block title %}Appointment Confirmation | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="confirmation-section">
+
+    <div class="confirmation-card">
+
+        <div class="success-icon">✓</div>
+
+        <h2>Appointment Confirmed!</h2>
+
+<p>
+    Your appointment has been scheduled successfully.
+</p>
+
+<p>
+    <strong>Confirmation ID:</strong>
+    {{ appointment.confirmation_code }}
+</p>
+
+<p>
+    <strong>Patient:</strong>
+    {{ appointment.patient.full_name }}
+</p>
+
+<p>
+    <strong>Doctor:</strong>
+    {{ appointment.doctor.doctor_name }}
+</p>
+
+<p>
+    <strong>Department:</strong>
+    {{ appointment.doctor.department.department_name }}
+</p>
+
+<p>
+    <strong>Date:</strong>
+    {{ appointment.appointment_date|date:"d F Y" }}
+</p>
+
+<p>
+    <strong>Time:</strong>
+    {{ appointment.appointment_time|time:"h:i A" }}
+</p>
+
+<p>
+    <strong>Status:</strong>
+    {{ appointment.status }}
+</p>
+
+<p class="pdf-message">
+    Your appointment has been confirmed successfully.
+    Download your appointment confirmation PDF below.
+</p>
+
+<a href="{% url 'download_appointment_pdf' appointment.confirmation_code %}"
+   class="download-pdf-btn">
+    <i class="fa-solid fa-file-pdf"></i>
+    Download Confirmation PDF
+</a>
+
+        <a href="{% url 'home' %}" class="confirmation-btn">
+            Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

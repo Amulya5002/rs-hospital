@@ -1,0 +1,40 @@
+{% extends 'hospital/base.html' %}
+
+{% block title %}Specialities | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+    <p class="eyebrow">OUR DEPARTMENTS</p>
+    <h1>Medical Specialities</h1>
+    <p>Explore our hospital departments.</p>
+</section>
+
+<section class="specialities-section">
+    <div class="specialities-container">
+
+        {% for department in departments %}
+
+        <a href="{% url 'speciality_detail' department.id %}"
+           class="speciality-card">
+
+            <div class="speciality-icon">✚</div>
+
+            <h3>{{ department.department_name }}</h3>
+
+            <p>Explore our {{ department.department_name }} department and its medical services.</p>
+
+            <span class="speciality-link">Explore Department →</span>
+
+        </a>
+
+        {% empty %}
+
+        <p>No specialities are currently available.</p>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

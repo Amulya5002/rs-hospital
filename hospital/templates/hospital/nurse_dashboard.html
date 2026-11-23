@@ -1,0 +1,115 @@
+
+{% extends 'hospital/staff_base.html' %}
+
+{% block title %}
+Nurse Dashboard | RS Hospital
+{% endblock %}
+
+{% block content %}
+
+<section class="doctor-dashboard">
+
+    <div class="dashboard-heading">
+        <h1>Nurse Dashboard</h1>
+        <p>
+            Welcome, {{ request.user.username }}
+        </p>
+        <p>View completed consultations and prescriptions.</p>
+    </div>
+
+    <h2>Completed Patient Consultations</h2>
+
+    <div class="patient-table-wrapper">
+
+        <table class="patient-table">
+
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Doctor</th>
+                    <th>Diagnosis</th>
+                    <th>Prescription</th>
+                    <th>Advice</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for consultation in consultations %}
+
+                <tr>
+
+                    <td>
+                        {{ consultation.appointment.patient.full_name }}
+                    </td>
+
+                    <td>
+                        {{ consultation.appointment.doctor.doctor_name }}
+                    </td>
+
+                    <td>
+                        {{ consultation.diagnosis|linebreaksbr }}
+                    </td>
+
+                    <td>
+                        {{ consultation.prescription|linebreaksbr }}
+                    </td>
+
+                    <td>
+                        {{ consultation.advice|linebreaksbr }}
+                    </td>
+
+                    <td>
+                        {{ consultation.dispensing_status }}
+                    </td>
+
+                    <td>
+
+                        {% if consultation.dispensing_status == 'Pending' %}
+
+                        <form method="POST"
+                              action="{% url 'mark_dispensed' consultation.id %}">
+
+                            {% csrf_token %}
+
+                            <button type="submit"
+                                    class="complete-btn"
+                                    onclick="return confirm('Confirm that the prescription has been verified and medicines have been handed to the patient?');">
+                                Record Handover
+                            </button>
+
+                        </form>
+
+                        {% else %}
+
+                        <span class="completed-label">
+                            Dispensed
+                        </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="7">
+                        No completed consultations available.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

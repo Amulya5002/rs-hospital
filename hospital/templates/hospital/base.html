@@ -1,0 +1,241 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RS Hospital{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'hospital/css/style.css' %}">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header class="header">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+    <img src="{% static 'hospital/images/logo.png' %}"
+         alt="Hospital Logo"
+         width="55"
+         height="55"
+         class="me-2">
+    <span>RS Hospital</span>
+    </a>
+
+   <button
+    type="button"
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Toggle navigation"
+    aria-controls="navbar"
+    aria-expanded="false">
+    ☰
+    </button>
+
+    <nav class="navbar" id="navbar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'doctor_list' %}">Doctors</a>
+        
+        <li class="nav-dropdown">
+
+            <div class="dropdown-heading">
+                <a href="{% url 'speciality' %}">
+                    SPECIALITIES
+                </a>
+
+                <button
+            type="button"
+            class="dropdown-toggle"
+            aria-label="Toggle specialities menu"
+            aria-expanded="false"
+            aria-controls="specialities-menu">
+            &#9662;
+        </button>
+    </div>
+
+    <ul class="dropdown-menu" id="specialities-menu">
+
+        {% for department in nav_departments %}
+
+        <li>
+            <a href="{% url 'speciality_detail' department.id %}">
+                {{ department.department_name }}
+            </a>
+        </li>
+
+        {% empty %}
+
+        <li>
+            <span>No departments available</span>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+</li>
+
+        
+        <a href="{% url 'contact_page' %}">Contact</a>
+        
+
+
+{% if request.user.is_authenticated %}
+    <div class="patient-user-menu">
+        <details class="patient-user-details">
+            <summary class="patient-user-toggle">
+                Hi, {{ request.user.get_full_name|default:request.user.username }} ▼
+            </summary>
+            <div class="patient-user-dropdown">
+                <form method="POST" action="{% url 'patient_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+        </details>
+    </div>
+{% else %}
+    <div class="login-dropdown">
+        <details class="login-dropdown-details">
+            <summary class="login-dropdown-toggle">
+                LOGIN ▼
+            </summary>
+            <div class="login-dropdown-menu">
+                <a href="{% url 'patient_login' %}">Patient Login</a>
+                <a href="{% url 'staff_login' %}">Staff Login</a>
+            </div>
+        </details>
+    </div>
+{% endif %}
+        <a href="{% url 'appointment_page' %}" class="appointment-nav-btn">
+            Book Appointment
+        </a>
+
+       
+    </nav>
+</header>
+
+<main>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+   
+{% if request.resolver_match.url_name != 'home' %}
+<div class="breadcrumb-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="{% url 'home' %}">HOME</a>
+
+        <span class="breadcrumb-arrow">&gt;</span>
+
+        <span class="current-page">
+            {% with page=request.resolver_match.url_name %}
+                {% if page == 'about' %}
+                    ABOUT US
+                {% elif page == 'doctor_list' %}
+                    DOCTORS
+                {% elif page == 'speciality' %}
+                    SPECIALITIES
+                {% elif page == 'speciality_detail' %}
+                    SPECIALITY DETAILS
+                {% elif page == 'appointment_page' %}
+                    BOOK APPOINTMENT
+                {% elif page == 'appointment_confirmation' %}
+                    APPOINTMENT CONFIRMATION
+                {% elif page == 'contact_page' %}
+                    CONTACT US
+                {% elif page == 'gallery' %}
+                    GALLERY
+                {% else %}
+                    {{ page|default:"PAGE"|cut:"_"|upper }}
+                {% endif %}
+            {% endwith %}
+        </span>
+    </nav>
+</div>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+
+</main>
+
+
+
+
+<footer class="hospital-footer">
+    <div class="container">
+        <div class="footer-container">
+
+            
+<div class="footer-section footer-about">
+
+    <div class="footer-logo">
+        <img src="{% static 'hospital/images/logo.png' %}"
+             alt="RS Hospital Logo">
+        <h4>RS HOSPITAL</h4>
+    </div>
+
+    <p>
+        Caring for your health with trusted
+        medical services and experienced
+        professionals.
+    </p>
+
+</div>
+
+
+            <div class="footer-section">
+                <h4>Our Department</h4>
+                <ul>
+                    <li>Cardiology</li>
+                    <li>Neurology</li>
+                    <li>Orthopaedics</li>
+                    <li>Surgical Gastroenterology</li>
+                    <li>Gynaecology</li>
+                    <li>Urology</li>
+                    <li>Pulmonology</li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Location</h4>
+                <p>Vijayawada</p>
+                <p>Phone: +91 9876541239</p>
+                <p>Email: info@rshospital.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Important Links</h4>
+                <ul>
+                    
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'doctor_list' %}">Doctors</a></li>
+                    <li><a href="{% url 'appointment_page' %}">Appointment</a></li>
+                    <li><a href="{% url 'contact_page' %}">Contact Us</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr class="footer-line">
+
+        <div class="footer-bottom">
+            <p>© 2026 RS HOSPITAL. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script src="{% static 'hospital/js/script.js' %}"></script>
+</body>
+</html>

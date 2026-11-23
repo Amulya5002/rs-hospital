@@ -1,0 +1,46 @@
+
+{% extends 'hospital/staff_base.html' %}
+
+{% block title %}Nurse Login | RS Hospital{% endblock %}
+
+{% block content %}
+
+<section class="doctor-login-section">
+
+    <div class="doctor-login-card">
+
+        <h2>Nurse Login</h2>
+        <p>Access completed patient consultations.</p>
+
+        {% for message in messages %}
+            <p class="login-message">{{ message }}</p>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password"
+                       name="password"
+                       required>
+            </div>
+
+            <button type="submit" class="doctor-login-btn">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

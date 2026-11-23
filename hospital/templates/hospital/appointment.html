@@ -1,0 +1,22 @@
+
+{% extends 'hospital/base.html' %}
+
+{% block title %}Appointment | RS Hospital{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <p class="eyebrow">ONLINE BOOKING</p>
+    <h1>Book Your Appointment</h1>
+    <p>Choose a doctor and request a convenient appointment.</p>
+</section>
+
+<section class="section">
+    <div class="form-container">
+        <h2>Appointment Request</h2>
+        <p>Our appointment booking service is being connected to the database.</p>
+        <a href="{% url 'appointment_page' %}" class="btn">
+            Register as a Patient
+        </a>
+    </div>
+</section>
+{% endblock %}

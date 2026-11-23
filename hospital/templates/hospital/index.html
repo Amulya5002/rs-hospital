@@ -1,0 +1,297 @@
+
+{% extends 'hospital/base.html' %}
+
+{% block title %}Home | RS Hospital{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="hero-content">
+
+    <h3>WELCOME TO RS HOSPITAL</h3>
+
+    <h1>Your Health.</h1>
+    <h2>Our Priority.</h2>
+
+    <p>
+        Caring for your health with trusted
+        medical services and experienced professionals.
+    </p>
+
+    <div class="hero-buttons">
+    <a href="{% url 'appointment_page' %}" class="appointment-btn">
+        Book an Appointment
+    </a>
+
+    <a href="{% url 'doctor_list' %}" class="doctors-btn">
+        Meet Our Doctors
+    </a>
+</div>
+
+</div>
+</section>
+
+<section class="section">
+    <p class="eyebrow">WHY CHOOSE US</p>
+    <h2>Healthcare Designed Around You</h2>
+    
+
+    <div class="card-grid">
+        <article class="card">
+            <h3>Expert Doctors</h3>
+            <p>Connect with highly qualified and experienced 
+                healthcare professionals who are dedicated to 
+                providing accurate diagnosis, effective treatment, 
+                and personalized medical care.</p>
+        </article>
+        <article class="card">
+            <h3>Modern Technology</h3>
+            <p>Patient-focused care supported by modern medical 
+                equipment and advanced healthcare facilities to help 
+                ensure accurate diagnosis and effective treatment.</p>
+        </article>
+        
+        <article class="card">
+            <h3>Patient-Centered Care</h3>
+            <p>Every patient is unique. We focus on understanding individual health needs and providing personalized treatment with attention, respect, and compassion.</p>
+        </article>
+        <article class="card">
+            <h3>Affordable Healthcare</h3>
+            <p>We believe that quality healthcare should be accessible to everyone. We aim to provide dependable medical services at reasonable and transparent costs</p>
+        </article>
+        <article class="card">
+            <h3>Clean and Safe Environment</h3>
+            <p>We maintain a clean, hygienic, and comfortable hospital environment to support patient safety and promote a positive healing experience</p>
+        </article>
+        <article class="card">
+            <h3>Caring Medical Staff</h3>
+            <p>From general medicine to specialized treatments, our healthcare services are designed to support different medical needs under one roof.</p>
+        </article>
+       
+    </div>
+</section>
+
+
+<!-- OUR SPECIALITIES SECTION -->
+<section class="specialities-section">
+    <div class="section-heading">
+        <span>OUR DEPARTMENTS</span>
+        <h2>Comprehensive Healthcare Services</h2>
+        <p>
+            We provide specialized medical care with experienced
+            professionals to support your health and well-being.
+        </p>
+    </div>
+
+    <div class="specialities-container">
+
+        <div class="speciality-card">
+            <div class="speciality-icon">♥</div>
+            <h3>Cardiology</h3>
+            <p>Medical care for heart and cardiovascular conditions.</p>
+        </div>
+
+        <div class="speciality-card">
+            <div class="speciality-icon">✚</div>
+            <h3>Neurology</h3>
+            <p>Diagnosis and treatment of brain and nervous system conditions.</p>
+        </div>
+
+        <div class="speciality-card">
+            <div class="speciality-icon">✂</div>
+            <h3>Surgical Gastroenterology</h3>
+            <p>Surgical treatment for digestive system conditions.</p>
+        </div>
+
+        <div class="speciality-card">
+            <div class="speciality-icon">⚕</div>
+            <h3>Urology</h3>
+            <p>Care for urinary tract and related conditions.</p>
+        </div>
+
+       
+
+       
+        <div class="show-more-container">
+    <a href="{% url 'speciality' %}" class="show-more-btn">
+        Show More 
+        <span>→</span>
+    </a>
+</div>
+
+    </div>
+</section>
+
+<section class="ambulance-highlights">
+
+    <div class="ambulance-heading">
+        <span class="ambulance-badge">FEATURES</span>
+
+        <h2>
+            Key Highlights @ <br>
+            Our Ambulance Services
+        </h2>
+    </div>
+
+    <div class="ambulance-grid">
+
+        <div class="ambulance-card">
+            <div class="ambulance-icon">
+                <i class="fa-solid fa-truck-medical"></i>
+            </div>
+            <h3>Secure Transport</h3>
+            <p>Safe, stable patient transfers you can trust</p>
+        </div>
+
+        <div class="ambulance-card">
+            <div class="ambulance-icon">
+                <i class="fa-solid fa-kit-medical"></i>
+            </div>
+            <h3>On Priority</h3>
+            <p>Immediate response when every second counts</p>
+        </div>
+
+        <div class="ambulance-card">
+            <div class="ambulance-icon">
+                <i class="fa-solid fa-kit-medical"></i>
+            </div>
+            <h3>Emergency Care</h3>
+            <p>Critical, ICU care and first-aid support during transit</p>
+        </div>
+
+        <div class="ambulance-card">
+            <div class="ambulance-icon">
+                <i class="fa-regular fa-comments"></i>
+            </div>
+            <h3>24/7 Availability</h3>
+            <p>Ready to dispatch to anywhere – Round the clock.</p>
+        </div>
+
+    </div>
+</section>
+
+{% load static %}
+
+{% load static %}
+
+<section class="rs-gallery">
+
+    <div class="rs-gallery-heading">
+        <span>OUR GALLERY</span>
+        <h2>Explore Our Hospital</h2>
+        <p>Discover our departments, infrastructure and facilities.</p>
+    </div>
+
+    <!-- CATEGORY FILTERS -->
+    <div class="rs-gallery-filters">
+    <button type="button" class="active" data-filter="all">All</button>
+    <button type="button" data-filter="hospital">Hospital</button>
+    <button type="button" data-filter="infrastructure">Infrastructure</button>
+    <button type="button" data-filter="pharmacy">Pharmacy</button>
+    <button type="button" data-filter="beds">Hospital Beds</button>
+    <button type="button" data-filter="icu">ICU</button>
+    <button type="button" data-filter="laboratory">Laboratory</button>
+    <button type="button" data-filter="operation">Operation Theatre</button>
+</div>
+
+    <!-- GALLERY IMAGES -->
+    <div class="rs-gallery-grid">
+
+        <div class="rs-gallery-item" data-category="hospital">
+            <img src="{% static 'hospital/images/hospital1.png' %}" alt="Hospital Building">
+        </div>
+
+        <div class="rs-gallery-item" data-category="infrastructure">
+            <img src="{% static 'hospital/images/reception.png' %}" alt="Hospital Reception">
+        </div>
+
+        <div class="rs-gallery-item" data-category="infrastructure">
+            <img src="{% static 'hospital/images/waiting-area.png' %}" alt="Hospital Waiting Area">
+        </div>
+
+        <div class="rs-gallery-item" data-category="pharmacy">
+            <img src="{% static 'hospital/images/pharmacy1.png' %}" alt="Pharmacy">
+        </div>
+
+        <div class="rs-gallery-item" data-category="pharmacy">
+            <img src="{% static 'hospital/images/pharmacy2.png' %}" alt="Medicine Store">
+        </div>
+
+        <div class="rs-gallery-item" data-category="beds">
+            <img src="{% static 'hospital/images/patient-room2.png' %}" alt="Hospital Beds">
+        </div>
+
+        <div class="rs-gallery-item" data-category="beds">
+            <img src="{% static 'hospital/images/patient-room.png' %}" alt="Patient Room">
+        </div>
+
+        <div class="rs-gallery-item" data-category="icu">
+            <img src="{% static 'hospital/images/icu.png' %}" alt="ICU">
+        </div>
+
+        <div class="rs-gallery-item" data-category="laboratory">
+            <img src="{% static 'hospital/images/lab1.png' %}" alt="Laboratory">
+        </div>
+
+        <div class="rs-gallery-item" data-category="operation">
+            <img src="{% static 'hospital/images/operation1.png' %}" alt="Operation Theatre">
+        </div>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const gallery = document.querySelector(".rs-gallery");
+
+    if (!gallery) {
+        return;
+    }
+
+    const filterButtons = gallery.querySelectorAll(
+        ".rs-gallery-filters button"
+    );
+
+    const galleryItems = gallery.querySelectorAll(
+        ".rs-gallery-item"
+    );
+
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const selectedCategory = button.dataset.filter;
+
+            // Remove active class from all buttons
+            filterButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            // Highlight selected button
+            button.classList.add("active");
+
+            // Filter gallery images
+            galleryItems.forEach(function (item) {
+
+                const imageCategory = item.dataset.category;
+
+                if (
+                    selectedCategory === "all" ||
+                    imageCategory === selectedCategory
+                ) {
+                    item.style.display = "";
+                    item.classList.remove("hidden");
+                } else {
+                    item.style.display = "none";
+                    item.classList.add("hidden");
+                }
+
+            });
+
+        });
+
+    });
+
+});
+</script>
+{% endblock %}
