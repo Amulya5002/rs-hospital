@@ -485,7 +485,7 @@ def doctor_login(request):
     return render(request, 'hospital/doctor_login.html')
 
 
-@login_required(login_url='doctor_login')
+
 
 @login_required(login_url='doctor_login')
 def doctor_dashboard(request):
