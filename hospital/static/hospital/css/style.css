@@ -3142,3 +3142,72 @@ header, .navbar, nav {
 .patient-user-dropdown button:hover {
     background: #eaf4ff;
 }
+
+/* Fix doctor grid responsiveness */
+
+@media (max-width: 900px) {
+
+    .doctor-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 20px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .doctor-grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 20px !important;
+        padding: 10px !important;
+        width: 100% !important;
+    }
+
+    .doctor-grid .doctor-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 400px !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        box-sizing: border-box;
+    }
+
+    .doctor-card img {
+        width: 100% !important;
+        height: 280px !important;
+        object-fit: cover;
+        object-position: top center;
+    }
+
+    .doctor-details {
+        width: 100%;
+        padding: 18px !important;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .doctor-details h3 {
+        font-size: 21px !important;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .doctor-details p {
+        font-size: 15px !important;
+        line-height: 1.6;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+
+    .doctor-card a {
+        display: block;
+        width: 100% !important;
+        padding: 13px 10px !important;
+        font-size: 15px !important;
+        white-space: normal !important;
+        box-sizing: border-box;
+    }
+}
