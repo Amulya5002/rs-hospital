@@ -21,15 +21,12 @@
         <article class="doctor-card">
 
             <div class="doctor-image">
-    {% if doctor.image %}
-        <img src="{{ doctor.image.url }}"
-             alt="{{ doctor.doctor_name }}">
-    {% else %}
-        <div class="doctor-image-placeholder">
-            <span>👨‍⚕️</span>
-            <p>Image not uploaded</p>
-        </div>
-    {% endif %}
+   {% if doctor.image %}
+    <img src="{% static doctor.image.name %}"
+         alt="{{ doctor.doctor_name }}">
+{% else %}
+    <p>Image not uploaded</p>
+{% endif %}
 </div>
 
             <div class="doctor-details">
